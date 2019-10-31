@@ -413,13 +413,16 @@ public class MemberAttributeServiceImpl implements MemberAttributeService {
             //todo Possibly push this onto main UHGroupings? Might not be necessary, not sure of implications this has
             try {
                 lookup = grouperFS.makeWsSubjectLookup(username);
+                // Results contains both the attribute and the attributenames in the same order
+                // Screen shot is captured of the tree, look in
                 WsGetSubjectsResults results = grouperFS.makeWsGetSubjectsResults(lookup);
                 subjects = results.getWsSubjects();
 
                 attributeValues = subjects[0].getAttributeValues();
-                String[] subjectAttributeNames = { UID, COMPOSITE_NAME, LAST_NAME, FIRST_NAME, UHUUID };
+
+//                String[] subjectAttributeNames = { UID, COMPOSITE_NAME, LAST_NAME, FIRST_NAME, UHUUID };
                 for (int i = 0; i < attributeValues.length; i++) {
-                    mapping.put(subjectAttributeNames[i], attributeValues[i]);
+                    mapping.put(results.getSubjectAttributeNames()[i], results.getWsSubjects()[0].getAttributeValues()[i]);
                 }
                 return mapping;
 
