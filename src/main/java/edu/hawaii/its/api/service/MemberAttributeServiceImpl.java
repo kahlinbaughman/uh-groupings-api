@@ -413,7 +413,6 @@ public class MemberAttributeServiceImpl implements MemberAttributeService {
         // Checks to make sure the user requesting information of another is a superuser or the owner of the group.
         if (isSuperuser(ownerUsername) || groupingAssignmentService.groupingsOwned(
                 groupingAssignmentService.getGroupPaths(ownerUsername, ownerUsername)).size() != 0) {
-            //todo Possibly push this onto main UHGroupings? Might not be necessary, not sure of implications this has
             try {
 
                 // Makes a call to GrouperClient and creates a WebService Subject Lookup of specified user.
