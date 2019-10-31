@@ -405,9 +405,6 @@ public class MemberAttributeServiceImpl implements MemberAttributeService {
         String[] attributeValues = new String[5];
         Map<String, String> mapping = new HashMap<String, String>();
 
-        //        if(username.equals(null)){
-        //            throw new GcWebServiceError("Error 404 Not Found");
-        //        }
         if (isSuperuser(ownerUsername) || groupingAssignmentService.groupingsOwned(
                 groupingAssignmentService.getGroupPaths(ownerUsername, ownerUsername)).size() != 0) {
             //todo Possibly push this onto main UHGroupings? Might not be necessary, not sure of implications this has
@@ -418,9 +415,6 @@ public class MemberAttributeServiceImpl implements MemberAttributeService {
                 WsGetSubjectsResults results = grouperFS.makeWsGetSubjectsResults(lookup);
                 subjects = results.getWsSubjects();
 
-                attributeValues = subjects[0].getAttributeValues();
-
-//                String[] subjectAttributeNames = { UID, COMPOSITE_NAME, LAST_NAME, FIRST_NAME, UHUUID };
                 for (int i = 0; i < attributeValues.length; i++) {
                     mapping.put(results.getSubjectAttributeNames()[i], results.getWsSubjects()[0].getAttributeValues()[i]);
                 }

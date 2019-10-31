@@ -466,7 +466,12 @@ public class TestMemberAttributeService {
     public void getUserAttributesTest() {
 
         Map<String, String> attributes = memberAttributeService.getUserAttributes(ADMIN_USER, "kahlin");
-        System.out.println(attributes);
+
+        assertTrue(attributes.get("uid").equals("kahlin"));
+        assertTrue(attributes.get("cn").equals("Kahlin Baughman"));
+        assertTrue(attributes.get("sn").equals("Baughman"));
+        assertTrue(attributes.get("givenName").equals("Kahlin"));
+        assertTrue(attributes.get("uhuuid").equals("23695080"));
 
 //        // Base test
 //        String useruid = usernames[1];
