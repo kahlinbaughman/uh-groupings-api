@@ -396,25 +396,37 @@ public class MemberAttributeServiceImpl implements MemberAttributeService {
         return wsAttributes != null ? wsAttributes : grouperFS.makeEmptyWsAttributeAssignArray();
     }
 
-    // Covered by Integration Tests
-    // Returns a user's attributes (FirstName, LastName, etc.) based on the username
-    // Not testable with Unit test as needs to connect to Grouper database to work, not mock db
+    /*
+    * Covered by Integration Tests
+    *
+    * Returns a user's attributes (FirstName(givenName), LastName(sn), Composite Name(cn), Username(uid), UH User ID(uhuuid)) based on the username.
+    * If the requester of the information is not a superuser or owner, then the function returns a mapping with empty values
+    *
+    * Not testable with Unit test as needs to connect to Grouper database to work, not mock db.
+    *
+     */
     public Map<String, String> getUserAttributes(String ownerUsername, String username) throws GcWebServiceError {
-        WsSubject[] subjects;
         WsSubjectLookup lookup;
         String[] attributeValues = new String[5];
         Map<String, String> mapping = new HashMap<String, String>();
 
+        // Checks to make sure the user requesting information of another is a superuser or the owner of the group.
         if (isSuperuser(ownerUsername) || groupingAssignmentService.groupingsOwned(
                 groupingAssignmentService.getGroupPaths(ownerUsername, ownerUsername)).size() != 0) {
             //todo Possibly push this onto main UHGroupings? Might not be necessary, not sure of implications this has
             try {
-                lookup = grouperFS.makeWsSubjectLookup(username);
-                // Results contains both the attribute and the attributenames in the same order
-                // Screen shot is captured of the tree, look in
-                WsGetSubjectsResults results = grouperFS.makeWsGetSubjectsResults(lookup);
-                subjects = results.getWsSubjects();
 
+                // Makes a call to GrouperClient and creates a WebService Subject Lookup of specified user.
+                lookup = grouperFS.makeWsSubjectLookup(username);
+
+                /*
+                * Using the WebService Subject Lookup it gets the gets the WebService Subject Results.
+                * The results returns information about the user including the user's attributes.
+                * In the results are the attributes and attribute names.
+                 */
+                WsGetSubjectsResults results = grouperFS.makeWsGetSubjectsResults(lookup);
+
+                // Maps the attribute to the attribute name
                 for (int i = 0; i < attributeValues.length; i++) {
                     mapping.put(results.getSubjectAttributeNames()[i], results.getWsSubjects()[0].getAttributeValues()[i]);
                 }
