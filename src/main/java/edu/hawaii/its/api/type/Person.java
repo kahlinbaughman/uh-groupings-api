@@ -24,7 +24,7 @@ public class Person implements Comparable<Person> {
     @Transient
     private static String LAST_NAME = "sn";
     @Transient
-    private static String UUID = "uuid";
+    private static String UHUUID = "uhuuid";
     @Transient
     private static String USERNAME = "uid";
 
@@ -45,7 +45,7 @@ public class Person implements Comparable<Person> {
     public Person(String name, String uuid, String username) {
         this(name);
 
-        attributes.put(UUID, uuid);
+        attributes.put(UHUUID, uuid);
         attributes.put(USERNAME, username);
     }
 
@@ -83,11 +83,11 @@ public class Person implements Comparable<Person> {
 
     @Column
     public String getUuid() {
-        return attributes.get(UUID);
+        return attributes.get(UHUUID);
     }
 
     public void setUuid(String uuid) {
-        attributes.put(UUID, uuid);
+        attributes.put(UHUUID, uuid);
     }
 
     @Column(name = "FirstName")
