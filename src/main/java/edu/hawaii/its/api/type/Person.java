@@ -82,11 +82,11 @@ public class Person implements Comparable<Person> {
     }
 
     @Column
-    public String getUuid() {
+    public String getUhuuid() {
         return attributes.get(UHUUID);
     }
 
-    public void setUuid(String uuid) {
+    public void setUhuuid(String uuid) {
         attributes.put(UHUUID, uuid);
     }
 
@@ -133,7 +133,7 @@ public class Person implements Comparable<Person> {
         int result = 1;
         String name = getName();
         String username = getUsername();
-        String uuid = getUuid();
+        String uuid = getUhuuid();
 
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -145,7 +145,7 @@ public class Person implements Comparable<Person> {
     public boolean equals(Object obj) {
         String name = getName();
         String username = getUsername();
-        String uuid = getUuid();
+        String uuid = getUhuuid();
 
         if (this == obj)
             return true;
@@ -165,8 +165,8 @@ public class Person implements Comparable<Person> {
         } else if (!username.equals(other.getUsername()))
             return false;
         if (uuid == null) {
-            return other.getUuid() == null;
-        } else return uuid.equals(other.getUuid());
+            return other.getUhuuid() == null;
+        } else return uuid.equals(other.getUhuuid());
     }
 
     @Override
@@ -184,7 +184,7 @@ public class Person implements Comparable<Person> {
             return nameComp;
         }
 
-        int uuidComp = nullSafeComparator.compare(getUuid(), person.getUuid());
+        int uuidComp = nullSafeComparator.compare(getUhuuid(), person.getUhuuid());
         if (uuidComp != 0) {
             return uuidComp;
         }
@@ -194,7 +194,7 @@ public class Person implements Comparable<Person> {
 
     @Override
     public String toString() {
-        return "Person [name=" + getName() + ", uuid=" + getUuid() + ", username=" + getUsername() + "]";
+        return "Person [name=" + getName() + ", uuid=" + getUhuuid() + ", username=" + getUsername() + "]";
     }
 
 }
