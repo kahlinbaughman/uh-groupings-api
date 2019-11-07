@@ -332,7 +332,7 @@ public class GrouperFactoryServiceImplLocal implements GrouperFactoryService {
         if (personToAdd.getUsername() != null) {
             newGroupMember = personRepository.findByUsername(personToAdd.getUsername());
         } else {
-            newGroupMember = personRepository.findByUuid(personToAdd.getUuid());
+            newGroupMember = personRepository.findByUhuuid(personToAdd.getUhuuid());
         }
 
         if (grouping == null) {
@@ -432,8 +432,8 @@ public class GrouperFactoryServiceImplLocal implements GrouperFactoryService {
 
         if (personToDelete.getUsername() != null) {
             personToDelete = personRepository.findByUsername(personToDelete.getUsername());
-        } else if (personToDelete.getUuid() != null) {
-            personToDelete = personRepository.findByUuid(personToDelete.getUuid());
+        } else if (personToDelete.getUhuuid() != null) {
+            personToDelete = personRepository.findByUhuuid(personToDelete.getUhuuid());
         }
 
         if (grouping == null) {
@@ -695,7 +695,7 @@ public class GrouperFactoryServiceImplLocal implements GrouperFactoryService {
         Person person = new Person(null, null, null);
 
         if (isUuid(username)) {
-            person = personRepository.findByUuid(username);
+            person = personRepository.findByUhuuid(username);
         } else {
             person = personRepository.findByUsername(username);
         }
@@ -715,7 +715,7 @@ public class GrouperFactoryServiceImplLocal implements GrouperFactoryService {
         if (person == null)
             person = new Person(null, null, null);
         wsSubject.setName(person.getName());
-        wsSubject.setId(person.getUuid());
+        wsSubject.setId(person.getUhuuid());
         wsSubject.setIdentifierLookup(person.getUsername());
         wsHasMemberResult.setWsSubject(wsSubject);
 
@@ -731,9 +731,9 @@ public class GrouperFactoryServiceImplLocal implements GrouperFactoryService {
             }
 
             //if username is null, try uuid
-        } else if (person.getUuid() != null) {
+        } else if (person.getUhuuid() != null) {
 
-            Person person0 = personRepository.findByUuid(person.getUuid());
+            Person person0 = personRepository.findByUhuuid(person.getUhuuid());
 
             if (groupToCheck.isMember(person0)) {
                 wsResultMeta.setResultCode(IS_MEMBER);
@@ -1024,12 +1024,12 @@ public class GrouperFactoryServiceImplLocal implements GrouperFactoryService {
 
             for (Person person : members) {
                 WsSubject subject = new WsSubject();
-                subject.setId(person.getUuid());
+                subject.setId(person.getUhuuid());
                 subject.setName(person.getName());
 
                 //has to be the same order as attributeNames array
                 subject.setAttributeValues(
-                        new String[] { person.getUsername(), person.getUuid(), person.getLastName(), person.getName(),
+                        new String[] { person.getUsername(), person.getUhuuid(), person.getLastName(), person.getName(),
                                 person.getFirstName() });
 
                 subjectList.add(subject);
@@ -1298,7 +1298,7 @@ public class GrouperFactoryServiceImplLocal implements GrouperFactoryService {
         results.setSubjectAttributeNames(attributeNames);
 
         subjectsList.get(0).setAttributeValues(
-                new String[] { person.getUsername(), person.getUuid(), person.getLastName(), person.getName(),
+                new String[] { person.getUsername(), person.getUhuuid(), person.getLastName(), person.getName(),
                         person.getFirstName() });
         results.setWsSubjects(subjectsList.toArray(new WsSubject[subjectsList.size()]));
 

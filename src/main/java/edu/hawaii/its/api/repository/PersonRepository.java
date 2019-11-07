@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface PersonRepository extends CrudRepository<Person, String> {
     List<Person> findByName(String name);
-    Person findByUuid(String uuid);
+    Person findByUhuuid(String uuid);
     Person findByUsername(String username);
 }

@@ -11,7 +11,6 @@ import edu.hawaii.its.api.type.GroupingsServiceResult;
 import edu.hawaii.its.api.type.Membership;
 import edu.hawaii.its.api.type.Person;
 
-import edu.internet2.middleware.grouperClient.ws.GcWebServiceError;
 import edu.internet2.middleware.grouperClient.ws.beans.WsSubjectLookup;
 import org.junit.Before;
 import org.junit.Test;
@@ -271,8 +270,8 @@ public class MemberAttributeServiceTest {
         Person person2 = users.get(2);
         Person person5 = users.get(5);
 
-        assertFalse(memberAttributeService.isMemberUuid(GROUPING_0_PATH, person2.getUuid()));
-        assertTrue(memberAttributeService.isMemberUuid(GROUPING_0_PATH, person5.getUuid()));
+        assertFalse(memberAttributeService.isMemberUuid(GROUPING_0_PATH, person2.getUhuuid()));
+        assertTrue(memberAttributeService.isMemberUuid(GROUPING_0_PATH, person5.getUhuuid()));
     }
 
     @Test
@@ -319,12 +318,12 @@ public class MemberAttributeServiceTest {
         System.out.println("Last: " + attributes.get(LAST_NAME));
         System.out.println("////////");
 
-        System.out.println(personFive.getUuid());
+        System.out.println(personFive.getUhuuid());
 
 
         assertThat(attributes.get(UID), equalTo(personFive.getUsername()));
         assertThat(attributes.get(COMPOSITE_NAME), equalTo(personFive.getName()));
-        assertThat(attributes.get(UHUUID), equalTo(personFive.getUuid()));
+        assertThat(attributes.get(UHUUID), equalTo(personFive.getUhuuid()));
         assertThat(attributes.get(FIRST_NAME), equalTo(personFive.getFirstName()));
         assertThat(attributes.get(LAST_NAME), equalTo(personFive.getLastName()));
 //
@@ -353,7 +352,7 @@ public class MemberAttributeServiceTest {
         Person testPerson = personRepository.findByUsername(users.get(5).getUsername());
 
         assertThat(membersResults.get(0).getUsername(), equalTo(testPerson.getUsername()));
-        assertThat(membersResults.get(0).getUuid(), equalTo(testPerson.getUuid()));
+        assertThat(membersResults.get(0).getUhuuid(), equalTo(testPerson.getUhuuid()));
         assertThat(membersResults.get(0).getName(), equalTo(testPerson.getName()));
     }
 }

@@ -93,7 +93,7 @@ public class Group implements Comparable<Group> {
     public List<String> getUuids() {
         return members
                 .parallelStream()
-                .map(Person::getUuid)
+                .map(Person::getUhuuid)
                 .collect(Collectors.toList());
     }
 

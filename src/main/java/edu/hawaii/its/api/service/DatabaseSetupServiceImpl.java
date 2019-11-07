@@ -169,8 +169,7 @@ public class DatabaseSetupServiceImpl implements DatabaseSetupService {
     private void setUpPersons() {
         int numberOfPersons = 100;
         for (int i = 0; i < numberOfPersons; i++) {
-            String testing = Integer.toString(i);
-            makePerson("name" + i, "bith", "username" + i, "surnameOf" + i, "givenNameOf" + i);
+            makePerson("name" + i, Integer.toString(i), "username" + i, "surnameOf" + i, "givenNameOf" + i);
         }
     }
 

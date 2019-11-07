@@ -7,8 +7,7 @@ import edu.hawaii.its.api.type.Grouping;
 import edu.hawaii.its.api.type.GroupingAssignment;
 import edu.hawaii.its.api.type.GroupingsServiceResult;
 import edu.hawaii.its.api.type.Person;
-import edu.internet2.middleware.grouperClient.api.GcGetAttributeAssignments;
-import edu.internet2.middleware.grouperClient.ws.beans.WsAttributeAssign;
+
 import edu.internet2.middleware.grouperClient.ws.beans.WsGetAttributeAssignmentsResults;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -298,7 +297,7 @@ public class TestGroupingAssignmentService {
         List<String> uuids = new ArrayList<>();
 
         for (Person p : nonPaginatedBasisMembers) {
-            uuids.add(p.getUuid());
+            uuids.add(p.getUhuuid());
         }
 
         Collections.sort(uuids);

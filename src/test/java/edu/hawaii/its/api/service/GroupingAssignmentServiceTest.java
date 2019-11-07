@@ -154,7 +154,7 @@ public class GroupingAssignmentServiceTest {
 
         assertTrue(groupingOwner.getComposite().getNames().contains(users.get(0).getName()));
         assertTrue(groupingOwner.getComposite().getUsernames().contains(users.get(0).getUsername()));
-        assertTrue(groupingOwner.getComposite().getUuids().contains(users.get(0).getUuid()));
+        assertTrue(groupingOwner.getComposite().getUuids().contains(users.get(0).getUhuuid()));
         assertTrue(groupingOwner.getInclude().getNames().contains(users.get(5).getName()));
         assertTrue(groupingOwner.getExclude().getNames().contains(users.get(2).getName()));
         assertTrue(groupingOwner.getBasis().getNames().contains(users.get(4).getName()));
@@ -162,7 +162,7 @@ public class GroupingAssignmentServiceTest {
 
         assertTrue(groupingAdmin.getComposite().getNames().contains(users.get(0).getName()));
         assertTrue(groupingAdmin.getComposite().getUsernames().contains(users.get(0).getUsername()));
-        assertTrue(groupingAdmin.getComposite().getUuids().contains(users.get(0).getUuid()));
+        assertTrue(groupingAdmin.getComposite().getUuids().contains(users.get(0).getUhuuid()));
         assertTrue(groupingAdmin.getInclude().getNames().contains(users.get(5).getName()));
         assertTrue(groupingAdmin.getExclude().getNames().contains(users.get(2).getName()));
         assertTrue(groupingAdmin.getBasis().getNames().contains(users.get(4).getName()));
@@ -195,24 +195,24 @@ public class GroupingAssignmentServiceTest {
 
         assertTrue(groupingOwner.getComposite().getNames().contains(users.get(0).getName()));
         assertTrue(groupingOwner.getComposite().getUsernames().contains(users.get(0).getUsername()));
-        assertTrue(groupingOwner.getComposite().getUuids().contains(users.get(0).getUuid()));
+        assertTrue(groupingOwner.getComposite().getUuids().contains(users.get(0).getUhuuid()));
         assertFalse(groupingOwner.getComposite().getNames().contains(users.get(7).getName()));
         assertFalse(groupingOwner.getComposite().getUsernames().contains(users.get(7).getUsername()));
-        assertFalse(groupingOwner.getComposite().getUuids().contains(users.get(7).getUuid()));
+        assertFalse(groupingOwner.getComposite().getUuids().contains(users.get(7).getUhuuid()));
 
         assertTrue(groupingAdmin.getComposite().getNames().contains(users.get(7).getName()));
         assertTrue(groupingAdmin.getComposite().getUsernames().contains(users.get(7).getUsername()));
-        assertTrue(groupingAdmin.getComposite().getUuids().contains(users.get(7).getUuid()));
+        assertTrue(groupingAdmin.getComposite().getUuids().contains(users.get(7).getUhuuid()));
         assertFalse(groupingAdmin.getComposite().getNames().contains(users.get(0).getName()));
         assertFalse(groupingAdmin.getComposite().getUsernames().contains(users.get(0).getUsername()));
-        assertFalse(groupingAdmin.getComposite().getUuids().contains(users.get(0).getUuid()));
+        assertFalse(groupingAdmin.getComposite().getUuids().contains(users.get(0).getUhuuid()));
 
         assertTrue(groupingNull.getComposite().getNames().contains(users.get(0).getName()));
         assertTrue(groupingNull.getComposite().getUsernames().contains(users.get(0).getUsername()));
-        assertTrue(groupingNull.getComposite().getUuids().contains(users.get(0).getUuid()));
+        assertTrue(groupingNull.getComposite().getUuids().contains(users.get(0).getUhuuid()));
         assertTrue(groupingNull.getComposite().getNames().contains(users.get(7).getName()));
         assertTrue(groupingNull.getComposite().getUsernames().contains(users.get(7).getUsername()));
-        assertTrue(groupingNull.getComposite().getUuids().contains(users.get(7).getUuid()));
+        assertTrue(groupingNull.getComposite().getUuids().contains(users.get(7).getUhuuid()));
     }
 
     @Test
@@ -513,7 +513,7 @@ public class GroupingAssignmentServiceTest {
         for (int i = 0; i < resultGroup.getMembers().size(); i++) {
             assertTrue(resultGroup.getMembers().get(i).getName().equals("testSubject_" + i));
             assertTrue(resultGroup.getNames().contains("testSubject_" + i));
-            assertTrue(resultGroup.getMembers().get(i).getUuid().equals("testSubject_uuid_" + i));
+            assertTrue(resultGroup.getMembers().get(i).getUhuuid().equals("testSubject_uuid_" + i));
             assertTrue(resultGroup.getUuids().contains("testSubject_uuid_" + i));
             assertTrue(resultGroup.getMembers().get(i).getUsername().equals("testSubject_username_" + i));
             assertTrue(resultGroup.getUsernames().contains("testSubject_username_" + i));
@@ -537,7 +537,7 @@ public class GroupingAssignmentServiceTest {
         Person person = groupingAssignmentService.makePerson(subject, attributeNames);
 
         assertTrue(person.getName().equals(name));
-        assertTrue(person.getUuid().equals(id));
+        assertTrue(person.getUhuuid().equals(id));
         assertTrue(person.getUsername().equals(identifier));
 
         assertNotNull(groupingAssignmentService.makePerson(new WsSubject(), new String[] {}));

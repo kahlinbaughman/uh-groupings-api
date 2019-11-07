@@ -315,13 +315,13 @@ public class GrouperFactoryServiceImpl implements GrouperFactoryService {
                     .execute();
         }
 
-        if (personToAdd.getUuid() == null) {
+        if (personToAdd.getUhuuid() == null) {
             throw new NullPointerException("The person is required to have either a username or a uuid");
         }
 
         return new GcAddMember()
                 .assignActAsSubject(lookup)
-                .addSubjectId(personToAdd.getUuid())
+                .addSubjectId(personToAdd.getUhuuid())
                 .assignGroupName(group)
                 .execute();
     }
@@ -395,13 +395,13 @@ public class GrouperFactoryServiceImpl implements GrouperFactoryService {
             return makeWsDeleteMemberResults(group, lookup, personToDelete.getUsername());
         }
 
-        if (personToDelete.getUuid() == null) {
+        if (personToDelete.getUhuuid() == null) {
             throw new NullPointerException("The person is required to have either a username or a uuid");
         }
 
         return new GcDeleteMember()
                 .assignActAsSubject(lookup)
-                .addSubjectId(personToDelete.getUuid())
+                .addSubjectId(personToDelete.getUhuuid())
                 .assignGroupName(group)
                 .execute();
     }
@@ -590,13 +590,13 @@ public class GrouperFactoryServiceImpl implements GrouperFactoryService {
             return makeWsHasMemberResults(group, person.getUsername());
         }
 
-        if (person.getUuid() == null) {
+        if (person.getUhuuid() == null) {
             throw new NullPointerException("The person is required to have either a username or a uuid");
         }
 
         return new GcHasMember()
                 .assignGroupName(group)
-                .addSubjectId(person.getUuid())
+                .addSubjectId(person.getUhuuid())
                 .execute();
     }
 
