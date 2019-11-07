@@ -400,7 +400,7 @@ public class MemberAttributeServiceImpl implements MemberAttributeService {
     * Covered by Integration Tests
     *
     * Returns a user's attributes (FirstName(givenName), LastName(sn), Composite Name(cn), Username(uid), UH User ID(uhuuid)) based on the username.
-    * If the requester of the information is not a superuser or owner, then the function returns a mapping with empty values
+    * If the requester of the information is not a superuser or owner, then the function returns a mapping with empty values.
     *
     * Not testable with Unit test as needs to connect to Grouper database to work, not mock db.
     *
@@ -425,7 +425,7 @@ public class MemberAttributeServiceImpl implements MemberAttributeService {
                  */
                 WsGetSubjectsResults results = grouperFS.makeWsGetSubjectsResults(lookup);
 
-                // Maps the attribute to the attribute name
+                // Maps the attribute to the attribute name.
                 for (int i = 0; i < attributeValues.length; i++) {
                     mapping.put(results.getSubjectAttributeNames()[i], results.getWsSubjects()[0].getAttributeValues()[i]);
                 }
@@ -435,6 +435,9 @@ public class MemberAttributeServiceImpl implements MemberAttributeService {
                 throw new GcWebServiceError("Error 404 Not Found");
             }
         } else {
+
+            // TODO Change this implementation
+
             String[] subjectAttributeNames = { UID, COMPOSITE_NAME, LAST_NAME, FIRST_NAME, UHUUID };
             for (int i = 0; i < attributeValues.length; i++) {
                 mapping.put(subjectAttributeNames[i], "");
